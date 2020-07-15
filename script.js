@@ -42,37 +42,63 @@ let loadUsuarios = () => {
         console.log(tag4)
         console.log(tag5)*/
 
-        let plantilla = `<div class="usuario">
+        let plantilla = `<div class="usuario col-lg-3 col-md-3 col-sm-12">
                           <div class="datos">
                             <h4 class="nombre">${nombre}</h4>
                             <small class="genero">${genero}</small>
                             <p class="etiquetas">
-                              <small> <a href="#">${tag1}</a></small>
-                              <small> <a href="#">${tag2}</a></small>
-                              <small> <a href="#">${tag3}</a></small>
-                              <small> <a href="#">${tag4}</a></small>
-                              <small> <a href="#">${tag5}</a></small>
+                              <small class= "tag"> <a href="#" onclick= filterElements(this)>${tag1}</a></small>
+                              <small class= "tag"> <a href="#" onclick= filterElements(this)>${tag2}</a></small>
+                              <small class= "tag"> <a href="#" onclick= filterElements(this)>${tag3}</a></small>
+                              <small class= "tag"> <a href="#" onclick= filterElements(this)>${tag4}</a></small>
+                              <small class= "tag"> <a href="#" onclick= filterElements(this)>${tag5}</a></small>
                             </p>
                           </div>
                         </div>`
 
-
-
-
-
-
-
-
+        document.getElementById('contenido-examen').innerHTML += plantilla
       }
-
-
-
-
 
     })
     .catch(function (error) {
       console.log('Hubo un problema con la petición Fetch:' + error.message);
     });
+}
+
+let filterElements = (obj) => {
+  var filterText = $(obj).text();
+  console.log("CLICKED: " + filterText)
+  let usuarios = document.getElementsByClassName("datos");
+  let userTags = []
+
+  //console.log(usuarios)
+  for (var i = 0; i < usuarios.length; i++){
+    //console.log(usuarios[i].children[2].children)
+    
+   console.log("USER " + (i+1) + "'S TAGS")
+    for(var j = 0; j < 5; j++){
+      //console.log(usuarios[i].children[2].children[j].textContent)
+      userTags.push(usuarios[i].children[2].children[j].textContent.trim());
+    }
+
+    console.log(userTags);
+    console.log(userTags.includes(filterText));
+
+
+   if(!(userTags.includes(filterText))){      
+      usuarios[i].style.display = "none";
+    }
+    
+    userTags = [];
+  }
+}
+
+
+let resetFilter = () => {
+  let usuarios = document.getElementsByClassName("datos");
+  for (var i = 0; i < usuarios.length; i++){
+    usuarios[i].style.display = "block";
+  }
 }
 
 document.addEventListener('DOMContentLoaded', function () {

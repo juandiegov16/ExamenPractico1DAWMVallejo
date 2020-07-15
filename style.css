@@ -1,0 +1,14 @@
+.etiquetas a:hover{
+  text-decoration: none !important;
+  font-weight: bold;
+}
+
+.nombre + .small{
+  font-style: italic;
+}
+
+.usuario:first-child{
+  padding: 0.8 rem;
+  background-color: #fff8e5;
+}
+
