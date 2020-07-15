@@ -17,12 +17,12 @@ let loadUsuarios = () => {
         }
       }*/
 
-      for(var i = 0; i < usuarios.length; i++){
+      for (var i = 0; i < usuarios.length; i++) {
         let nombre = usuarios[i].name
         let genero = usuarios[i].gender
         let etiquetas = []
 
-        for(var j = 0; j < 5; j++){
+        for (var j = 0; j < 5; j++) {
           etiquetas.push(usuarios[i].tags[j])
         }
 
